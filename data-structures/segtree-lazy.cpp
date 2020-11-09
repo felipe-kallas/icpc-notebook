@@ -24,7 +24,7 @@ class segtree {
   
 	inline void push(int x, int l, int r) {
 		int mid = (l + r) >> 1;
-		int z = x + ((y - l + 1) << 1);
+		int z = x + ((mid - l + 1) << 1);
 		// push from x into (x + 1) and z
 
 		if (tree[x].add != 0) {
