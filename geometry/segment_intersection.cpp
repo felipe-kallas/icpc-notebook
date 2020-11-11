@@ -3,23 +3,22 @@ using namespace std;
 
 const int INF = 112345;
 
-template <typename M>
 struct Point {
-	M x, y;
+	long long x, y;
 	int id;
 	
 	Point () {}
-	Point (M _x, M _y) {
+	Point (long long _x, long long _y) {
 		x = _x; y = _y;
 	}
  
 	Point operator+ (const Point & p) const { return Point (x + p.x, y + p.y); }
 	Point operator- (const Point & p) const { return Point (x - p.x, y - p.y); }
 	
-	M operator^ (const Point & p) const { return x * p.y - y * p.x; }
-	M operator* (const Point & p) const { return x * p.x + y * p.y; }
+	long long operator^ (const Point & p) const { return x * p.y - y * p.x; }
+	long long operator* (const Point & p) const { return x * p.x + y * p.y; }
 	Point operator* (const double & d) const { return Point(x * d, y * d); }
-	M operator~ () const { return x * x + y * y; }
+	long long operator~ () const { return x * x + y * y; }
  
 	bool operator< (const Point & p) const { return make_pair (x, y) < make_pair (p.x, p.y); }
 	bool operator== (const Point & p) const { return make_pair (x, y) == make_pair (p.x, p.y); }
@@ -48,7 +47,7 @@ struct Point {
 	
 };
 
-bool isInside(Point<long long> p, Point<long long> p2, Point<long long> a, Point<long long> b) {
+bool isInside(Point p, Point p2, Point a, Point b) {
  
 	if( ((p2-p)^(a-p)) == 0 && ((p2-p)^(b-p)) == 0 ) {
 		if(p <= a && a <= p2 && p <= b && b <= p2) return true;
@@ -59,13 +58,13 @@ bool isInside(Point<long long> p, Point<long long> p2, Point<long long> a, Point
  
 }
 
-void showAns (Point<long long> a, Point<long long> b) {
+void showAns (Point a, Point b) {
 	assert(a < b);
 	printf("%lld.000000 %lld.000000\n", a.x, a.y);
 	printf("%lld.000000 %lld.000000\n", b.x, b.y);
 }
 
-void getSeg(Point<long long> p, Point<long long> p2, Point<long long> q, Point<long long> q2) {
+void getSeg(Point p, Point p2, Point q, Point q2) {
 
 	if(q < p) {
 		swap(p, q);
@@ -90,10 +89,10 @@ void getSeg(Point<long long> p, Point<long long> p2, Point<long long> q, Point<l
 }
 
 
-bool intersect(Point<long long> p, Point<long long> p2, Point<long long> q, Point<long long> q2) {
+bool intersect(Point p, Point p2, Point q, Point q2) {
 
-	Point<long long> r = p2 - p;
-	Point<long long> s = q2 - q;
+	Point r = p2 - p;
+	Point s = q2 - q;
 	long long rxs = r ^ s;
 	long long qpxr = (q-p) ^ r;
 
@@ -130,7 +129,7 @@ bool intersect(Point<long long> p, Point<long long> p2, Point<long long> q, Poin
 
 int main() {
 
-    Point<long long> a, b, c, d;
+    Point a, b, c, d;
     cin >> a >> b >> c >> d;
     //cin >> a.x >> a.y >> b.x >> b.y >> c.x >> c.y >> d.x >> d.y;
 
@@ -158,4 +157,3 @@ int main() {
 
     return 0;
 }
-
