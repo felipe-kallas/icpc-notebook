@@ -1,23 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename M>
 struct Point {
-	M x, y;
+	long long x, y;
 	int id;
 	
 	Point () {}
-	Point (M _x, M _y) {
+	Point (long long _x, long long _y) {
 		x = _x; y = _y;
 	}
  
 	Point operator+ (const Point & p) const { return Point (x + p.x, y + p.y); }
 	Point operator- (const Point & p) const { return Point (x - p.x, y - p.y); }
 	
-	M operator^ (const Point & p) const { return x * p.y - y * p.x; }
-	M operator* (const Point & p) const { return x * p.x + y * p.y; }
+	long long operator^ (const Point & p) const { return x * p.y - y * p.x; }
+	long long operator* (const Point & p) const { return x * p.x + y * p.y; }
 	Point operator* (const double & d) const { return Point(x * d, y * d); }
-	M operator~ () const { return x * x + y * y; }
+	long long operator~ () const { return x * x + y * y; }
  
 	bool operator< (const Point & p) const { return make_pair (y, x) < make_pair (p.y, p.x); }
 	bool operator== (const Point & p) const { return make_pair (y, x) == make_pair (p.y, p.x); }
@@ -47,12 +46,12 @@ struct Point {
 const int MAXN = 212345;
  
 int n;
-Point<long long> points[MAXN];
+Point points[MAXN];
  
 int m;
-Point<long long> ch[MAXN];
+Point ch[MAXN];
  
-bool cmp (const Point<long long> p, const Point<long long> q) {
+bool cmp (const Point p, const Point q) {
 	long long cross = (p - points[0]) ^ (q - points[0]);
 	if (cross != 0) return cross > 0;
 	return ~(p - points[0]) < ~(q - points[0]);
@@ -110,4 +109,3 @@ int main () {
  
 	return 0;
 }
-
